@@ -146,6 +146,26 @@ class DoublyLikedList {
 
     return true;
   }
+
+  remove(index: number) {
+    if (index < 0 || index >= this.length) return undefined;
+    if (index === 0) return this.shift();
+    if (index === this.length - 1) return this.pop;
+
+    const nodeToRemove = this.get(index);
+    const prevNode = nodeToRemove!.prev;
+    const nextNode = nodeToRemove!.next;
+
+    prevNode!.next = nextNode;
+    nextNode!.prev = prevNode;
+
+    nodeToRemove!.next = null;
+    nodeToRemove!.prev = null;
+
+    this.length--;
+
+    return nodeToRemove;
+  }
 }
 
 const list = new DoublyLikedList();

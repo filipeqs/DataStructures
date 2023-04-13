@@ -7,3 +7,7 @@ Singly Linked List
 ```bash
 Doubly Linked List
 ```
+
+```bash
+Stacks
+```

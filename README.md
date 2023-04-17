@@ -15,3 +15,7 @@ Stacks
 ```bash
 Queue
 ```
+
+```bash
+Binary Search Trees
+```

@@ -11,3 +11,7 @@ Doubly Linked List
 ```bash
 Stacks
 ```
+
+```bash
+Queue
+```

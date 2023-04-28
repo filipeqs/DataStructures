@@ -123,7 +123,6 @@ class SinglyLinkedList {
 }
 
 var list = new SinglyLinkedList();
-
 list.push(100);
 list.push(201);
 list.push(250);

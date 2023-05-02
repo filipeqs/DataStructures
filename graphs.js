@@ -4,7 +4,7 @@ class Graph {
   }
 
   addVertex(vertex) {
-    if (!this.adjacecyList[vertex]) this.adjacecyList.push({ vertex: [] });
+    if (!this.adjacecyList[vertex]) this.adjacecyList[vertex] = [];
   }
 
   addEdge(vertextOne, vertextTwo) {
@@ -30,4 +30,72 @@ class Graph {
 
     delete this.adjacecyList[vertex];
   }
+
+  DFSRecursive(vertex) {
+    const result = [];
+    const visited = {};
+
+    const DFS = (vertex) => {
+      if (!vertex) return;
+
+      result.push(vertex);
+      visited[vertex] = true;
+
+      const vertices = this.adjacecyList[vertex];
+      vertices.forEach((vertice) => {
+        if (!visited[vertice]) DFS(vertice);
+      });
+    };
+
+    DFS(vertex);
+    return result;
+  }
+
+  DFSIterative(start) {
+    const stack = [];
+    const visited = {};
+    const result = [];
+    let currentVertex;
+
+    stack.push(start);
+    while (stack.length) {
+      currentVertex = stack.pop();
+      if (!visited[currentVertex]) {
+        visited[currentVertex] = true;
+        result.push(currentVertex);
+
+        const neighbors = this.adjacecyList[currentVertex];
+        neighbors.forEach((neighbor) => {
+          stack.push(neighbor);
+        });
+      }
+    }
+
+    return result;
+  }
 }
+
+const g = new Graph();
+
+g.addVertex('A');
+g.addVertex('B');
+g.addVertex('C');
+g.addVertex('D');
+g.addVertex('E');
+g.addVertex('F');
+
+g.addEdge('A', 'B');
+g.addEdge('A', 'C');
+g.addEdge('B', 'D');
+g.addEdge('C', 'E');
+g.addEdge('D', 'E');
+g.addEdge('D', 'F');
+g.addEdge('E', 'F');
+
+//          A
+//        /   \
+//       B     C
+//       |     |
+//       D --- E
+//        \   /
+//          F
